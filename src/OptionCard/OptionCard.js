@@ -12,8 +12,11 @@ const USCurrencyFormat = new Intl.NumberFormat('en-US', {
 
 
 class OptionCard extends React.Component {
+    
     render() {
-        const { itemHash, feature, item } = this.props;
+        const { itemHash, feature, item, selected } = this.props;
+        console.log(feature);
+
         return (
             
                     
@@ -24,8 +27,8 @@ class OptionCard extends React.Component {
                         id={itemHash}
                         className="feature__option"
                         name={slugify(feature)}
-                        checked={item.name === this.state.selected[feature].name}
-                        onChange={e => this.updateFeature(feature, item)}
+                        checked={item.name === selected[feature].name}
+                        onChange={e => this.props.handleUpdateFeature(feature, item)}
                       />
                       <label htmlFor={itemHash} className="feature__label">
                         {item.name} ({USCurrencyFormat.format(item.cost)})

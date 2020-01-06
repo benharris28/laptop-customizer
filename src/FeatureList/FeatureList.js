@@ -1,40 +1,44 @@
 import React from 'react';
-import OptionCard from '../OptionCard/OptionCard';
-import slugify from 'slugify';
+
+
+import FeatureBlock from '../FeatureBlock/FeatureBlock';
 
 
 
 class FeatureList extends React.Component {
     render() {
-        const features = Object.keys(this.props.features).map((feature, idx) => {
+        const features = Object.keys(this.props.features)
+        .map((feature, idx) => {
             const featureHash = feature + '-' + idx;
-            
-            const options = this.props.features[feature].map(item => {
-              const itemHash = slugify(JSON.stringify(item));
-              return (
-                <OptionCard 
-                    {...item} itemHash={itemHash}/>
-              );
-            });
-        
-      
             return (
-              <fieldset className="feature" key={featureHash}>
-                <legend className="feature__name">
-                  <h3>{feature}</h3>
-                </legend>
-                {options}
-              </fieldset>
-            );
-          });
+                <FeatureBlock
+                    {...feature}
+                    feature={feature}
+                    features={this.props.features}
+                    selected={this.props.selected}
+                    key={featureHash}
+                    handleUpdateFeature={this.props.handleUpdateFeature}
+                    />
+            )
+        })
 
         return (
-            <div>{features}</div>
+            <form className="main__form">
+                <h2>Customize your laptop</h2>
+                {features}
+            </form>
         )
+    }
+}
+            
+            
+            
             
         
+      
+     
+        
     
-}
-}
+
 
 export default FeatureList;
