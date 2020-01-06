@@ -14,6 +14,7 @@ class FeatureBlock extends React.Component {
             const itemHash = slugify(JSON.stringify(item));
             return (
                 <OptionCard 
+                    key={this.props.key}
                     itemHash={itemHash}
                     item={item}
                     features={this.props.features}
